@@ -1,0 +1,16 @@
+{
+  "servers": [
+    {
+      "name": "sample_server",
+      "command": "python",
+      "args": ["-m", "src.mcp.sample_server"],
+      "description": "Basic math and story tools"
+    },
+    {
+      "name": "new_sample_server",
+      "command": "python", 
+      "args": ["-m", "src.mcp.new_sample_server"],
+      "description": "Calculator, weather, and translation tools"
+    }
+  ]
+}

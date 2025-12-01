@@ -1,0 +1,137 @@
+{
+  "name": "MultiServer",
+  "version": "1.0.0",
+  "description": "MCP server with math tools, story tool, calculator, weather, and translation tools",
+  "capabilities": {
+    "tools": [
+      
+      {
+        "name": "add",
+        "description": "Add two integers",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "a": { "type": "integer" },
+            "b": { "type": "integer" }
+          },
+          "required": ["a", "b"]
+        },
+        "returns": { "type": "integer" } 
+      },
+      {
+        "name": "multiply",
+        "description": "Multiply two integers",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "a": { "type": "integer" },
+            "b": { "type": "integer" }
+          },
+          "required": ["a", "b"]
+        },
+        "returns": { "type": "integer" }
+      },
+      {
+        "name": "story",
+        "description": "Return a story",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" }
+          },
+          "required": ["name"]
+        },
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "calculate",
+        "description": "Calculate mathematical expressions safely",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "expression": { "type": "string" }
+          },
+          "required": ["expression"]
+        },
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "weather",
+        "description": "Get weather information for a city",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": { "type": "string" }
+          },
+          "required": ["city"]
+        },
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "translate",
+        "description": "Translate text to target language",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "text": { "type": "string" },
+            "target_language": { "type": "string" }
+          },
+          "required": ["text", "target_language"]
+        },
+        "returns": { "type": "string" }
+      },
+      {
+        "name": "what_kavach_can_do",
+        "description": "Return information about what Kavach can do",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "returns": { "type": "string" }
+      },
+      
+      {
+        "name": "create_iam_user_with_token_fetch",
+        "description": "Two-step: fetch Kavach token then create the user",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "email": { "type": "string" },
+            "first_name": { "type": "string" },
+            "last_name": { "type": "string" },
+            "username": { "type": "string", "description": "Defaults to email prefix." },
+            "base_url": { "type": "string", "default": "http://192.168.1.9:8080" },
+            "realm": { "type": "string", "default": "master" },
+            "admin_username": { "type": "string", "default": "admin" },
+            "admin_password": { "type": "string", "default": "admin" },
+            "client_id": { "type": "string", "default": "admin-cli" },
+            "client_secret": { "type": "string", "description": "If omitted, uses env KAVACH_CLIENT_SECRET" },
+            "email_verified": { "type": "boolean", "default": true },
+            "enabled": { "type": "boolean", "default": true },
+            "required_actions": { "type": "array", "items": { "type": "string" }, "default": ["UPDATE_PASSWORD"] },
+            "groups": { "type": "array", "items": { "type": "string" }, "default": [] },
+            "attributes": { "type": "object", "additionalProperties": { "type": "string" }, "default": {} }
+          },
+          "required": ["email", "first_name", "last_name"],
+          "anyOf": [{ "required": ["client_secret"] }]
+        },
+        "returns": { "type": "string" }
+      }
+    ],
+    "resources": [
+      {
+        "uri": "greeting://{name}",
+        "description": "Greeting resource",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" }
+          },
+          "required": ["name"]
+        },
+        "returns": { "type": "string" }
+      }
+    ]
+  }
+}
